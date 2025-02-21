@@ -1,52 +1,96 @@
-# Text Encryption Application
 
-## Overview
-This Python application provides a simple graphical user interface (GUI) for text encryption using the Advanced Encryption Standard (AES) algorithm in Cipher Block Chaining (CBC) mode. It utilizes the Tkinter library for GUI development and the cryptography library for AES encryption.
+## Custom Key Encryption & Decryption
+A **Python-based GUI application for text encryption and decryption using a **custom user-defined key**. The application uses the **Fernet (AES-128 CBC with HMAC) encryption algorithm** from the **cryptography** library.
 
-![Encryption](https://github.com/DDimov03/Text-Encryption/assets/110220663/ba0b504e-0d32-4f23-aa25-84a77e34c1f4)
+---
 
+## **Installation & Setup**
 
-## Features
-- User-friendly GUI for text input and encryption.
-- Generates a random AES key for each encryption session.
-- Encrypts user-provided text and displays the encrypted text along with the AES key used.
-
-## Getting Started (If you are not on Windows)
-1. Ensure you have Python 3.x installed on your system.
-2. Install the required libraries by running the following command:
+### **1. Check Python Version**
+Ensure you have Python **3.8** installed:
+```sh
+python3.8 --version
 ```
-pip install tkinter cryptography
-```
-4. Clone this repository to your local machine:
-```
-git clone https://github.com/yourusername/text-encryption-app.git
-```
-5. Navigate to the project directory:
-```
-cd text-encryption-app
-```
-6. Run the application by executing the script:
-```
-   python text_encryption.py
-   ```
 
+### **2. Install Dependencies**
+Install `tkinter` (for GUI) and `cryptography` (for encryption):
+```sh
+pip install tkinter
+pip install cryptography
+```
 
-## Usage
-1. Launch the application.
-2. Enter the text you want to encrypt in the input field.
-3. Click the "Encrypt" button to perform encryption.
-4. The encrypted text and the AES key used for encryption will be displayed in the output field.
+### **3. Verify Installed Packages**
+Run the following command to check installed dependencies:
+```sh
+pip freeze
+```
+Expected output:
+```
+cffi==1.17.1
+cryptography==44.0.1
+pybase64==1.4.0
+pycparser==2.22
+```
 
-**Note:** The AES key is generated randomly for each encryption session and is essential for decryption. Ensure you securely store the AES key if you plan to decrypt the text later.
+### **4. Run the Application**
+Navigate to the project directory and execute:
+```sh
+python main.py
+```
 
-## Customization
-- You can modify the appearance of the GUI by adjusting the style settings in the code, such as font size, padding, and button size.
-- To add additional functionality or integrate this code into a larger project, you can extend the codebase as needed.
+---
 
-## Dependencies
-- Python 3.x
-- Tkinter (for GUI development)
-- cryptography (for AES encryption)
+## **How It Works**
+1. **User Inputs a Custom Encryption Key**  
+   - The user provides a custom key, which is used to generate a **secure AES key**.
+2. **User Enters the Text to Encrypt**  
+   - Click **"Encrypt"**, and the text is encrypted using **AES-128 (Fernet)**.
+   - The encrypted text is displayed in the output box.
+3. **Decryption Process**  
+   - Paste the **encrypted text** into the input box.
+   - Enter the **same encryption key**.
+   - Click **"Decrypt"**, and the original text is recovered.
 
-## Credits
-This Text Encryption Application was created by Denis Dimov.
+---
+
+## **Encryption Algorithm Used**
+- **AES-128 in CBC Mode with HMAC Authentication**
+  - Uses the **Fernet encryption scheme** (from the `cryptography` library).
+  - **AES-128 (Advanced Encryption Standard, 128-bit key).**
+  - **CBC (Cipher Block Chaining) Mode** ensures strong encryption.
+  - **HMAC (Hash-based Message Authentication Code)** provides integrity verification.
+  - The encryption key is **derived from user input** using **SHA-256 hashing**.
+
+---
+
+## **Project Structure**
+```
+/Text-Encryption
+│── main.py          # Main application file
+│── README.md        # Project documentation
+│── requirements.txt # List of dependencies (optional)
+```
+
+---
+
+## **Features**
+✅ **User-defined encryption key**  
+✅ **Secure AES-128 encryption**  
+✅ **GUI-based user-friendly interface**  
+✅ **Black & `#45a29e` Themed UI**  
+✅ **Cursor highlight and button hover effects**  
+✅ **Error handling for incorrect keys**  
+
+---
+
+## **Screenshots**
+*(Add screenshots of the UI here for better visualization.)*
+![UI](image.png)
+---
+
+## **License**
+This project is open-source and free to use. 🚀
+
+---
+
+Let me know if you need modifications! 🔥

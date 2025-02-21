@@ -1,72 +1,244 @@
+# import tkinter as tk
+# from tkinter import ttk, messagebox
+# from cryptography.fernet import Fernet
+# import base64
+# import hashlib
+
+# # Function to generate a valid Fernet key from user input
+# def generate_key(user_key):
+#     """Convert a user-defined key into a valid AES key."""
+#     hashed_key = hashlib.sha256(user_key.encode()).digest()  # Hash the user key
+#     return base64.urlsafe_b64encode(hashed_key)  # Convert to Fernet-compatible key
+
+# # Encrypt text using a custom key
+# def encrypt_text():
+#     input_text = entry.get().strip()
+#     user_key = key_entry.get().strip()
+
+#     if not input_text or not user_key:
+#         messagebox.showwarning("Warning", "Please enter both text and encryption key.")
+#         return
+
+#     # Generate Fernet key from user input
+#     custom_key = generate_key(user_key)
+#     cipher_suite = Fernet(custom_key)
+
+#     encrypted_text = cipher_suite.encrypt(input_text.encode()).decode()
+
+#     # Display encrypted text
+#     output_text.config(state=tk.NORMAL)
+#     output_text.delete(1.0, tk.END)
+#     output_text.insert(tk.END, f"Encrypted: {encrypted_text}")
+#     output_text.config(state=tk.DISABLED)
+
+# # Decrypt text using a custom key
+# def decrypt_text():
+#     input_text = entry.get().strip()
+#     user_key = key_entry.get().strip()
+
+#     if not input_text or not user_key:
+#         messagebox.showwarning("Warning", "Please enter both encrypted text and key.")
+#         return
+
+#     try:
+#         # Generate Fernet key from user input
+#         custom_key = generate_key(user_key)
+#         cipher_suite = Fernet(custom_key)
+
+#         decrypted_text = cipher_suite.decrypt(input_text.encode()).decode()
+
+#         # Display decrypted text
+#         output_text.config(state=tk.NORMAL)
+#         output_text.delete(1.0, tk.END)
+#         output_text.insert(tk.END, f"Decrypted: {decrypted_text}")
+#         output_text.config(state=tk.DISABLED)
+#     except Exception:
+#         messagebox.showerror("Error", "Invalid encryption key or text!")
+
+# # Create main window
+# window = tk.Tk()
+# window.title("Custom Key Encryption & Decryption")
+# window.geometry("400x500")
+# window.resizable(False, False)
+# window.configure(bg="#f4f4f4")
+
+# # Title Label
+# title_label = ttk.Label(window, text="Custom Key Encryption & Decryption", font=("Arial", 14, "bold"), background="#f4f4f4")
+# title_label.pack(pady=10)
+
+# # Key Entry Field
+# key_label = ttk.Label(window, text="Enter Encryption Key:", font=("Arial", 12), background="#f4f4f4")
+# key_label.pack()
+# key_entry = ttk.Entry(window, font=("Arial", 12), justify="center", width=35)
+# key_entry.pack(pady=5)
+
+# # Input Field
+# entry_label = ttk.Label(window, text="Enter Text:", font=("Arial", 12), background="#f4f4f4")
+# entry_label.pack()
+# entry = ttk.Entry(window, font=("Arial", 12), justify="center", width=35)
+# entry.pack(pady=5)
+
+# # Button Frame
+# button_frame = ttk.Frame(window)
+# button_frame.pack(pady=5)
+
+# # Encrypt Button
+# encrypt_button = ttk.Button(button_frame, text="Encrypt", command=encrypt_text)
+# encrypt_button.grid(row=0, column=0, padx=10)
+
+# # Decrypt Button
+# decrypt_button = ttk.Button(button_frame, text="Decrypt", command=decrypt_text)
+# decrypt_button.grid(row=0, column=1, padx=10)
+
+# # Output Text Box
+# output_text = tk.Text(window, wrap=tk.WORD, font=("Arial", 12), height=8, bg="#ffffff", state=tk.DISABLED)
+# output_text.pack(padx=20, pady=10, fill="both")
+
+# # Footer Label
+# footer_label = ttk.Label(window, text="Created by Binksbrew", font=("Arial", 10), foreground="gray", background="#f4f4f4")
+# footer_label.pack(side="bottom", pady=10)
+
+# # Run GUI
+# window.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from cryptography.fernet import Fernet
+import base64
+import hashlib
 
-# Generate a random AES key
-def generate_aes_key():
-    return Fernet.generate_key()
+# Function to generate a valid Fernet key from user input
+def generate_key(user_key):
+    """Convert a user-defined key into a valid AES key."""
+    hashed_key = hashlib.sha256(user_key.encode()).digest()  # Hash the user key
+    return base64.urlsafe_b64encode(hashed_key)  # Convert to Fernet-compatible key
 
-# Initialize the cipher suite with a given key
-def initialize_cipher_suite(key):
-    return Fernet(key)
+# Encrypt text using a custom key
+def encrypt_text():
+    input_text = entry.get().strip()
+    user_key = key_entry.get().strip()
 
-# Encrypt text using AES-CBC
-def encrypt_text(text, cipher_suite):
-    encrypted_text = cipher_suite.encrypt(text.encode())
-    return encrypted_text
+    if not input_text or not user_key:
+        messagebox.showwarning("Warning", "Please enter both text and encryption key.")
+        return
 
-# Function to perform encryption and update the result container
-def perform_encryption():
-    input_text = entry.get()
-    aes_key = generate_aes_key()
-    cipher_suite = initialize_cipher_suite(aes_key)
-    encrypted_text = encrypt_text(input_text, cipher_suite)
-    
-    # Insert the encrypted text and AES key into the Text widget
-    output_text.config(state=tk.NORMAL)  # Enable editing
-    output_text.delete(1.0, tk.END)  # Clear existing content
-    output_text.insert(tk.END, f"Encrypted Text: {encrypted_text.decode()}\nAES Key: {aes_key.decode()}")
-    output_text.config(state=tk.DISABLED)  # Disable editing
+    # Generate Fernet key from user input
+    custom_key = generate_key(user_key)
+    cipher_suite = Fernet(custom_key)
 
-# Create the main window
+    encrypted_text = cipher_suite.encrypt(input_text.encode()).decode()
+
+    # Display encrypted text
+    output_text.config(state=tk.NORMAL)
+    output_text.delete(1.0, tk.END)
+    output_text.insert(tk.END, f"Encrypted:\n{encrypted_text}")
+    output_text.config(state=tk.DISABLED)
+
+# Decrypt text using a custom key
+def decrypt_text():
+    input_text = entry.get().strip()
+    user_key = key_entry.get().strip()
+
+    if not input_text or not user_key:
+        messagebox.showwarning("Warning", "Please enter both encrypted text and key.")
+        return
+
+    try:
+        # Generate Fernet key from user input
+        custom_key = generate_key(user_key)
+        cipher_suite = Fernet(custom_key)
+
+        decrypted_text = cipher_suite.decrypt(input_text.encode()).decode()
+
+        # Display decrypted text
+        output_text.config(state=tk.NORMAL)
+        output_text.delete(1.0, tk.END)
+        output_text.insert(tk.END, f"Decrypted:\n{decrypted_text}")
+        output_text.config(state=tk.DISABLED)
+    except Exception:
+        messagebox.showerror("Error", "Invalid encryption key or text!")
+
+# Function to highlight input fields when focused
+def on_focus_in(event):
+    event.widget.config(highlightbackground="#45a29e", highlightcolor="#45a29e", highlightthickness=2)
+
+def on_focus_out(event):
+    event.widget.config(highlightbackground="#ffffff", highlightcolor="#ffffff", highlightthickness=1)
+
+# Function to change button color on hover
+def on_enter(event):
+    event.widget.config(background="#45a29e", foreground="black")
+
+def on_leave(event):
+    event.widget.config(background="black", foreground="#45a29e")
+
+# Create main window
 window = tk.Tk()
-window.title("Text Encryption")
+window.title("Custom Key Encryption & Decryption")
+window.geometry("500x600")  # Bigger window
+window.resizable(False, False)
+window.configure(bg="black")  # Black background
 
-# Set window size and make it unresizable
-window.geometry("350x400")  # Fixed window size
-window.resizable(False, False)  # Disable resizing
+# Title Label
+title_label = ttk.Label(window, text="Custom Key Encryption & Decryption", font=("Arial", 16, "bold"), foreground="#45a29e", background="black")
+title_label.pack(pady=20)
 
-# Create a themed style
+# Key Entry Field
+key_label = ttk.Label(window, text="Enter Encryption Key:", font=("Arial", 12, "bold"), foreground="#45a29e", background="black")
+key_label.pack()
+key_entry = tk.Entry(window, font=("Arial", 12), justify="center", width=40, bg="black", fg="#45a29e", relief="solid", highlightthickness=1)
+key_entry.pack(pady=5)
+key_entry.bind("<FocusIn>", on_focus_in)
+key_entry.bind("<FocusOut>", on_focus_out)
+
+# Input Field
+entry_label = ttk.Label(window, text="Enter Text:", font=("Arial", 12, "bold"), foreground="#45a29e", background="black")
+entry_label.pack()
+entry = tk.Entry(window, font=("Arial", 12), justify="center", width=40, bg="black", fg="#45a29e", relief="solid", highlightthickness=1)
+entry.pack(pady=5)
+entry.bind("<FocusIn>", on_focus_in)
+entry.bind("<FocusOut>", on_focus_out)
+
+# Button Frame
 style = ttk.Style()
+style.configure("Black.TFrame", background="black")
 
-# Configure the style for the input field
-style.configure("TEntry",
-                font=("Arial", 24),  # Increase font size
-                padding=15,  # Add padding
-                width=40)  # Decrease width for a longer input field
+button_frame = ttk.Frame(window, style="Black.TFrame")
 
-# Create an input frame to hold the input field and button
-input_frame = ttk.Frame(window)
-input_frame.pack(fill="both", expand=True, padx=20, pady=20)
+button_frame.pack(pady=10)
 
-# Create an input field with a watermark for encryption
-entry = ttk.Entry(input_frame, justify="center", style="TEntry")
-entry.insert(0, "Enter the text")
-entry.bind("<FocusIn>", lambda event: entry.delete(0, "end"))  # Clear the watermark on focus
-entry.pack(side="left", padx=5, pady=10)  # Increase padding
+# Encrypt Button
+encrypt_button = tk.Button(button_frame, text="Encrypt", command=encrypt_text, font=("Arial", 12, "bold"), bg="black", fg="#45a29e", borderwidth=2, relief="ridge")
+encrypt_button.grid(row=0, column=0, padx=20)
+encrypt_button.bind("<Enter>", on_enter)
+encrypt_button.bind("<Leave>", on_leave)
 
-# Create a themed button to trigger encryption
-encrypt_button = ttk.Button(input_frame, text="Encrypt", command=perform_encryption, style="TButton")
-encrypt_button.pack(side="left", padx=10, pady=10)  # Increase padding for a slightly larger button
+# Decrypt Button
+decrypt_button = tk.Button(button_frame, text="Decrypt", command=decrypt_text, font=("Arial", 12, "bold"), bg="black", fg="#45a29e", borderwidth=2, relief="ridge")
+decrypt_button.grid(row=0, column=1, padx=20)
+decrypt_button.bind("<Enter>", on_enter)
+decrypt_button.bind("<Leave>", on_leave)
 
-# Create a Text widget to display the output
-output_text = tk.Text(window, wrap=tk.WORD, font=("Arial", 14), height=8)  # Increase font size and set height
-output_text.pack(fill="both", expand=True, padx=20, pady=20)
-output_text.config(state=tk.DISABLED)  # Make the Text widget read-only
+# Output Text Box
+output_text = tk.Text(window, wrap=tk.WORD, font=("Arial", 12), height=8, bg="black", fg="#45a29e", insertbackground="#45a29e", state=tk.DISABLED, relief="solid", highlightthickness=1)
+output_text.pack(padx=30, pady=10, fill="both")
+output_text.bind("<FocusIn>", on_focus_in)
+output_text.bind("<FocusOut>", on_focus_out)
 
-# Create a label for the watermark
-watermark_label = ttk.Label(window, text="Created by Denis Dimov", font=("Arial", 10), foreground="gray")
-watermark_label.place(x=10, y=10)  # Adjust the position of the watermark label
+# Footer Label
+footer_label = ttk.Label(window, text="Created by Binksbrew", font=("Arial", 10, "bold"), foreground="#45a29e", background="black")
+footer_label.pack(side="bottom", pady=20)
 
-# Start the GUI main loop
+# Run GUI
 window.mainloop()
