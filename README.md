@@ -1,5 +1,4 @@
 
-
 ## Custom Key Encryption & Decryption
 A **Python-based GUI application** for text encryption and decryption using a **custom user-defined key**. The application uses the **Fernet (AES-128 CBC with HMAC) encryption algorithm** from the **cryptography** library.
 =======
@@ -99,16 +98,6 @@ python main.py
 
 ![alt text](image-1.png)
 
----
-
-<<<<<<< HEAD
-## **Screenshots**
-![image](https://github.com/user-attachments/assets/1e3c83b8-77be-4b61-b3a5-fc90c97af660)
-
----
-
-## **License**
-This project is open-source and free to use. 🚀
 
 =======
 ## **🔒 Security Notes**
@@ -133,5 +122,3 @@ This project is **open-source** and free to use. 🚀
 
 ### **🎯 Contributors**
 Developed by **Binksbrew**. If you’d like to contribute, feel free to fork this repo and submit a pull request! 🚀
-
->>>>>>> 43e11e0 (updated with more algorithms)
